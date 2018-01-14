@@ -41,3 +41,4 @@ This is a personal project but may be of use to anyone looking to compress and s
 * [Color Output](https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux)
 * [SCP](http://www.hypexr.org/linux_scp_help.php)
 * [Bash Guide](https://www.panix.com/~elflord/unix/bash-tute.html)
+* [y/N in Bash](https://stackoverflow.com/questions/3231804/in-bash-how-to-add-are-you-sure-y-n-to-any-command-or-alias)
