@@ -35,3 +35,6 @@ This is a personal project but may be of use to anyone looking to compress and s
 * [README Template](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
 * [Semantic Versioning](http://semver.org/spec/v2.0.0.html)
 * [OpenSSH + Cygrunsrv](http://www.catonmat.net/blog/windows-through-ssh/)
+* [Color Output](https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux)
+* [SCP](http://www.hypexr.org/linux_scp_help.php)
+* [Bash Guide](https://www.panix.com/~elflord/unix/bash-tute.html)
