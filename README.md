@@ -25,7 +25,8 @@ This is a personal project but may be of use to anyone looking to compress and s
 
 1. `git clone https://github.com/JamKelley22/Autopack.git`
 2. `cd Autopack`
-3. `./autopack` 
+3. `mv autopack <parent directory of project you want to use autopack on>
+4. `./autopack` 
 * *Note* Running Autopack with < 3 or > 5 arguments will show the format Autopack expects as well as a couple use cases
 
 ## Authors
