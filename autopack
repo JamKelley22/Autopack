@@ -1,0 +1,91 @@
+#!/bin/bash
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+PURPLE='\033[0;35m'
+NC='\033[0m'
+PLUS="${GREEN}+${NC}"
+PROMPT="${PURPLE}?${NC}"
+
+# Check for correct number of args
+if [ "$#" -lt 3 ] || [ "$#" -gt 6 ];
+then
+	echo -e "${RED}ERROR:${NC} Invalid Number of Arguements"
+	echo -e "${GREEN}usage:${NC}\t./autopack [ file ] [ lastname_firstname ] [ Assignment # ] [ your_username@remotehost ] [ Remote Directory ]"
+	echo -e "${CYAN}Basic Use (Clean & Compress)${NC}"
+	echo -e "\t./autopack EightQueens/ doe_jane 0"  
+	echo -e "${CYAN}Basic + Send to Remote Host using ISU Hostname assigned to device${NC}"
+	echo -e "\t./autopack assign1.05/ doe_john 1.05 jdoe@john_pc.student.iastate.edu ~" 
+	echo -e "${CYAN}Same as above but using ip address. Also saves to ~/Projects/Zipped${NC}"
+	echo -e "\t./autopack Avenge/ kurta_kurapika 256 scarlet@192.168.0.1 ~/Projects/Zipped"  
+	exit 1
+fi
+
+# $1 - File to be packed
+FILE=$1
+# $2 - "lastname_firstname"
+USER_NAME=$2
+# $3 - Assignment number
+ASSIGN_NUM=$3
+
+# Optional Upload to Remote Host Args
+if [ "$#" -ne 6 ];
+then
+	# $4 - user@host
+	USER_HOST=$4
+	# $5 - Remote Directory
+	REMOTE_DIR=$5
+fi
+
+# Save current directory
+startDir=`pwd`
+
+# Move into directory
+echo -e "$PLUS cd $startDir/$FILE"
+cd $startDir/$FILE
+
+# Clean up files to remove exe and .o
+echo -e "$PLUS make clean"
+make clean
+
+# Move out of directory
+echo -e "$PLUS cd .."
+cd ..
+
+# Copy directory (by default) to hwk specification
+echo -e "$PLUS cp -R $FILE $USER_NAME.assignment-$ASSIGN_NUM"
+cp -R $FILE $USER_NAME.assignment-$ASSIGN_NUM
+assignName="$USER_NAME.assignment-$ASSIGN_NUM"
+
+# Create Tarball
+echo -e "$PLUS tar cvfz "$assignName".tar.gz $assignName"
+zippedName=""$assignName".tar.gz"
+tar cfz "$assignName".tar.gz $assignName""
+
+# Remove renamed directory
+echo -e "$PLUS rm -rf $assignName"
+rm -rf $assignName
+
+if [ "$#" -ne 6 ]; 
+then
+	# SCP
+	echo -e "$PLUS scp $zippedName $USER_HOST:$REMOTE_DIR"
+	scp $zippedName Jameel@192.168.1.19:~/327
+
+	# 
+	echo -e "$PLUS DONE"
+	printf "$PROMPT"
+	read -r -p " Remove $zippedName?(y/N)" response
+	if [[ "$response" =~ ^([yY][eE][sS]|[yY])+$ ]]	
+	then
+		# Remove zipped file
+		echo -e "$PLUS rm -rf zippedName"
+		rm -rf $zippedName
+	fi
+fi
+
+
+# Return to starting directory (Not necessary at the moment)
+echo -e "$PLUS cd $startDir"
+cd $startDir
