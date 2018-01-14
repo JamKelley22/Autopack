@@ -71,7 +71,7 @@ if [ "$#" -ne 6 ];
 then
 	# SCP
 	echo -e "$PLUS scp $zippedName $USER_HOST:$REMOTE_DIR"
-	scp $zippedName Jameel@192.168.1.19:~/327
+	scp $zippedName $USER_HOST:$REMOTE_DIR
 
 	# 
 	echo -e "$PLUS DONE"
