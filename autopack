@@ -16,9 +16,9 @@ then
 	echo -e "${CYAN}Basic Use (Clean & Compress)${NC}"
 	echo -e "\t./autopack EightQueens/ doe_jane 0"  
 	echo -e "${CYAN}Basic + Send to Remote Host using ISU Hostname assigned to device${NC}"
-	echo -e "\t./autopack assign1.05/ doe_john 1.05 jdoe@john_pc.student.iastate.edu ~" 
-	echo -e "${CYAN}Same as above but using ip address. Also saves to ~/Projects/Zipped${NC}"
-	echo -e "\t./autopack Avenge/ kurta_kurapika 256 scarlet@192.168.0.1 ~/Projects/Zipped"  
+	echo -e "\t./autopack assign1.05/ doe_john 1.05 jdoe@john_pc.student.iastate.edu /" 
+	echo -e "${CYAN}Same as above but using ip address. Also saves to /Projects/Zipped${NC}"
+	echo -e "\t./autopack Avenge/ kurta_kurapika 256 scarlet@192.168.0.1 /Projects/Zipped"  
 	exit 1
 fi
 
